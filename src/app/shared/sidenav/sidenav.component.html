@@ -18,7 +18,7 @@
         <mat-icon class="toggle-icon">{{ configExpanded ? 'expand_less' : 'expand_more' }}</mat-icon>
       </mat-list-item>
 
-      <!-- Contenedor del submenú -->
+      <!-- Contenedor del submenú (modificado: se quitó el chevron_right) -->
       <div class="submenu-container" [class.expanded]="configExpanded">
         @for (item of menuItems; track item.path) {
           <a mat-list-item
@@ -26,7 +26,7 @@
              routerLinkActive="active"
              class="submenu-item"
              (click)="isMobile && toggleSidebar()">
-            <mat-icon matListItemIcon class="submenu-icon">chevron_right</mat-icon>
+            <!-- Eliminado: <mat-icon matListItemclass="submenu-icon">chevron_right</mat-icon> -->
             <span matListItemTitle>{{ item.title }}</span>
           </a>
         }
