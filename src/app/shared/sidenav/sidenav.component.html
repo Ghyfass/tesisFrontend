@@ -1,0 +1,64 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav
+               [mode]="isMobile ? 'over' : 'side'"
+               [opened]="(sidebarOpen || !isMobile)"
+               class="sidebar"
+               [fixedInViewport]="isMobile"
+               [fixedTopGap]="56">
+
+    <div class="sidebar-header">
+      <h3 class="app-title">Sitios Web</h3>
+    </div>
+
+    <mat-nav-list>
+      <!-- Item principal Configuraciones -->
+      <mat-list-item class="config-main-item" (click)="toggleConfigExpanded()">
+        <mat-icon matListItemIcon class="config-icon">settings</mat-icon>
+        <span matListItemTitle class="config-title">Configuraciones</span>
+        <mat-icon class="toggle-icon">{{ configExpanded ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </mat-list-item>
+
+      <!-- Contenedor del submenú -->
+      <div class="submenu-container" [class.expanded]="configExpanded">
+        @for (item of menuItems; track item.path) {
+          <a mat-list-item
+             [routerLink]="item.path"
+             routerLinkActive="active"
+             class="submenu-item"
+             (click)="isMobile && toggleSidebar()">
+            <mat-icon matListItemIcon class="submenu-icon">chevron_right</mat-icon>
+            <span matListItemTitle>{{ item.title }}</span>
+          </a>
+        }
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- Barra superior -->
+    <div class="top-toolbar">
+      <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">Directorio Web</span>
+    </div>
+
+    <!-- Overlay para móviles -->
+    <div class="sidebar-overlay"
+         [class.active]="sidebarOpen && isMobile"
+         (click)="toggleSidebar()"></div>
+
+    <!-- Contenido principal -->
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- Botón flotante -->
+<button mat-fab
+        color="primary"
+        class="floating-btn"
+        (click)="abrirFormularioCrear()">
+  <mat-icon>add</mat-icon>
+</button>

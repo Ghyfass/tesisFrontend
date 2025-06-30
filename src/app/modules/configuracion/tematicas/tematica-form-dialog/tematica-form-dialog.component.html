@@ -1,0 +1,30 @@
+<div class="tematica-form-container">
+  <h2 mat-dialog-title>{{ modoCreacion ? 'Nueva Temática' : 'Editar Temática' }}</h2>
+
+  <div mat-dialog-content>
+    <div class="first-field-spacing"></div>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="tematica.nombre" required>
+      <mat-error *ngIf="!tematica.nombre?.trim()">Campo obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput [(ngModel)]="tematica.descripcion" rows="3"></textarea>
+    </mat-form-field>
+
+    <mat-slide-toggle [(ngModel)]="tematica.estado" class="toggle-field">
+      {{ tematica.estado ? 'Activo' : 'Inactivo' }}
+    </mat-slide-toggle>
+  </div>
+
+  <div mat-dialog-actions class="actions-container">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="guardar()"
+            [disabled]="!tematica.nombre?.trim()">
+      {{ modoCreacion ? 'Crear' : 'Guardar' }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="tipo-form-container">
+  <h2 mat-dialog-title>{{ modoCreacion ? 'Nuevo Tipo de Sitio' : 'Editar Tipo de Sitio' }}</h2>
+
+  <div mat-dialog-content>
+    <div class="first-field-spacing"></div>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="tipo.nombre" required>
+      <mat-error *ngIf="!tipo.nombre?.trim()">Campo obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput [(ngModel)]="tipo.descripcion" rows="3"></textarea>
+    </mat-form-field>
+
+    <mat-slide-toggle [(ngModel)]="tipo.estado" class="toggle-field">
+      {{ tipo.estado ? 'Activo' : 'Inactivo' }}
+    </mat-slide-toggle>
+  </div>
+
+  <div mat-dialog-actions class="actions-container">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="guardar()"
+            [disabled]="!tipo.nombre?.trim()">
+      {{ modoCreacion ? 'Crear' : 'Guardar' }}
+    </button>
+  </div>
+</div>

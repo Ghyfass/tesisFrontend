@@ -1,0 +1,249 @@
+:root {
+  --sidebar-bg: #2c3e50; /* Color azul oscuro moderno */
+  --sidebar-header-bg: #1a252f; /* Color más oscuro para el encabezado */
+  --sidebar-hover: rgba(255, 255, 255, 0.1);
+  --sidebar-active: #3498db; /* Azul más claro para items activos */
+  --text-color: #fff;
+  --mobile-breakpoint: 992px;
+  --sidebar-width: 280px;
+  --transition-speed: 0.3s;
+}
+
+/* Estructura principal */
+.sidenav-container {
+  height: 100vh;
+  width: 100%;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: #08234a;
+  color: var(--text-color);
+  border-right: none;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado */
+.sidebar-header {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #08234a;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #fff !important;
+}
+
+/* Item Configuraciones */
+.config-main-item {
+  background-color: var(--sidebar-header-bg);
+  border-bottom: 1px solid rgba(10, 19, 97, 0.874);
+  height: 56px !important;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease;
+  -webkit-transition: background-color var(--transition-speed) ease;
+  -moz-transition: background-color var(--transition-speed) ease;
+  -ms-transition: background-color var(--transition-speed) ease;
+  -o-transition: background-color var(--transition-speed) ease;
+}
+
+.config-main-item:hover {
+  background-color: lighten(var(--sidebar-header-bg), 5%);
+  position: relative;
+}
+
+.config-icon {
+  color: var(--text-color);
+  margin-right: 16px;
+}
+
+.config-title {
+  font-weight: 500;
+  flex: 1;
+  color: #fff !important;
+}
+
+.toggle-icon {
+  transition: transform var(--transition-speed) ease;
+  color: rgba(255, 255, 255, 0.7);
+  position: relative;
+  -webkit-transition: transform var(--transition-speed) ease;
+  -moz-transition: transform var(--transition-speed) ease;
+  -ms-transition: transform var(--transition-speed) ease;
+  -o-transition: transform var(--transition-speed) ease;
+}
+
+/* Contenedor del submenú */
+.submenu-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-speed) ease-out;
+  background-color: darken(var(--sidebar-bg), 2%);
+}
+
+.submenu-container.expanded {
+  max-height: 1000px; /* Valor suficientemente grande */
+}
+
+/* Items del submenú */
+.submenu-item {
+  padding-left: 56px !important;
+  color: #fff !important;
+  transition: all calc(var(--transition-speed) / 2) ease;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center;
+}
+
+.submenu-item:hover {
+  background-color: var(--sidebar-hover);
+  color: #fff !important;
+}
+
+.submenu-item.active {
+  background-color: var(--sidebar-active);
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.submenu-icon {
+  font-size: 16px !important;
+  margin-right: 12px !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: color calc(var(--transition-speed) / 2) ease;
+}
+
+.submenu-item.active .submenu-icon {
+  color: #fff !important;
+}
+
+/* Barra superior */
+.top-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: 56px;
+  background: var(--sidebar-header-bg);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu-button {
+  margin-right: 16px;
+  color: var(--text-color);
+}
+
+.toolbar-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #fff !important;
+}
+
+/* Overlay para móviles */
+.sidebar-overlay {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Contenido */
+.content-container {
+  padding: 20px;
+  margin-top: 56px;
+}
+
+/* Botón flotante */
+.floating-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1050;
+  background-color: var(--sidebar-active);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .sidebar {
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .sidebar:not(.mat-sidenav-opened) {
+    transform: translateX(-100%);
+  }
+}
+
+@media (min-width: 993px) {
+  .top-toolbar .menu-button {
+    display: none;
+  }
+
+  .sidebar-overlay {
+    display: none !important;
+  }
+}
+
+.mat-mdc-list-item .mdc-list-item__primary-text {
+  color: #fff !important; /* Fuerza el color blanco */
+}
+/* En tu archivo CSS principal o styles.css */
+.mat-mdc-list-item {
+  /* Texto */
+  --mdc-list-list-item-label-text-color: #fff;
+
+  /* Iconos */
+  --mdc-list-list-item-leading-icon-color: #fff;
+  --mdc-list-list-item-trailing-icon-color: #fff;
+}
+
+/* Fuerza colores en caso de que las variables no apliquen */
+.mat-mdc-list-item .mdc-list-item__primary-text,
+.mat-mdc-list-item .mdc-list-item__start,
+.mat-mdc-list-item .mdc-list-item__end {
+  color: #fff !important;
+}
+
+.mat-icon {
+  color: white !important;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7)) !important;
+}
+/* Asegura que el contenedor de "Configuraciones" tenga una alineación flexible */
+.config-main-item {
+  display: flex !important;
+  align-items: center !important;  /* Centrado vertical */
+  justify-content: space-between !important;  /* Texto a la izquierda, icono a la derecha */
+  padding: 0 16px !important;
+}
+
+/* Estilo específico para el icono de toggle */
+.config-main-item .toggle-icon {
+  margin-left: 8px !important;
+  color: white !important;
+  font-size: 20px !important;  /* Mismo tamaño que el texto */
+  width: 20px !important;
+  height: 20px !important;
+  position: relative;
+  top: 1px !important;
+}
+

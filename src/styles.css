@@ -1,0 +1,17 @@
+:root {
+  --sidenav-width: 240px; /* Ajusta si tu sidenav tiene otro ancho */
+  --page-padding: 16px;
+}
+
+.main-content {
+  margin-left: var(--sidenav-width);
+  padding: var(--page-padding);
+  box-sizing: border-box;
+}
+
+/* Responsive: en pantallas pequeñas el margen izquierdo se elimina */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+}

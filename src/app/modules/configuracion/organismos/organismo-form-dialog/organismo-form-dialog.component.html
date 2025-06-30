@@ -1,0 +1,30 @@
+<div class="organismo-form-container">
+  <h2 mat-dialog-title>{{ modoCreacion ? 'Nuevo Organismo' : 'Editar Organismo' }}</h2>
+
+  <div mat-dialog-content>
+    <div class="first-field-spacing"></div>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="organismo.nombre" required>
+      <mat-error *ngIf="!organismo.nombre?.trim()">Campo obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput [(ngModel)]="organismo.descripcion" rows="3"></textarea>
+    </mat-form-field>
+
+    <mat-slide-toggle [(ngModel)]="organismo.estado" class="toggle-field">
+      {{ organismo.estado ? 'Activo' : 'Inactivo' }}
+    </mat-slide-toggle>
+  </div>
+
+  <div mat-dialog-actions class="actions-container">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="guardar()"
+            [disabled]="!organismo.nombre?.trim()">
+      {{ modoCreacion ? 'Crear' : 'Guardar' }}
+    </button>
+  </div>
+</div>

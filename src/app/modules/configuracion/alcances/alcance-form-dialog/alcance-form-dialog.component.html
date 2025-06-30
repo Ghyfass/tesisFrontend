@@ -1,0 +1,25 @@
+<div class="alcance-form-container">
+  <h2 mat-dialog-title>{{ modoCreacion ? 'Nuevo Alcance' : 'Editar Alcance' }}</h2>
+
+  <div mat-dialog-content>
+    <div class="first-field-spacing"></div>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="alcance.nombre" required>
+      <mat-error *ngIf="!alcance.nombre?.trim()">Campo obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-slide-toggle [(ngModel)]="alcance.estado" class="toggle-field">
+      {{ alcance.estado ? 'Activo' : 'Inactivo' }}
+    </mat-slide-toggle>
+  </div>
+
+  <div mat-dialog-actions class="actions-container">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="guardar()"
+            [disabled]="!alcance.nombre?.trim()">
+      {{ modoCreacion ? 'Crear' : 'Guardar' }}
+    </button>
+  </div>
+</div>

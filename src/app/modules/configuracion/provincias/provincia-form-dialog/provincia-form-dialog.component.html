@@ -1,0 +1,29 @@
+<div class="provincia-form-container">
+  <h2 mat-dialog-title>{{ modoCreacion ? 'Nueva Provincia' : 'Editar Provincia' }}</h2>
+
+  <div mat-dialog-content>
+    <div class="first-field-spacing"></div>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="provincia.nombre" required>
+      <mat-error *ngIf="!provincia.nombre?.trim()">Campo obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Código</mat-label>
+      <input matInput [(ngModel)]="provincia.codigo" required>
+      <mat-error *ngIf="!provincia.codigo?.trim()">Campo obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-slide-toggle [(ngModel)]="provincia.estado" class="toggle-field">Activo</mat-slide-toggle>
+  </div>
+
+  <div mat-dialog-actions class="actions-container">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="guardar()"
+            [disabled]="!provincia.nombre?.trim() || !provincia.codigo?.trim()">
+      Guardar
+    </button>
+  </div>
+</div>

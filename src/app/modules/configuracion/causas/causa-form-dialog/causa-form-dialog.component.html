@@ -1,0 +1,37 @@
+<div class="causa-form-container">
+  <h2 mat-dialog-title>{{ modoCreacion ? 'Nueva Causa' : 'Editar Causa' }}</h2>
+
+  <div mat-dialog-content>
+    <form [formGroup]="causaForm">
+      <div class="first-field-spacing"></div>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" required>
+        <mat-error *ngIf="titulo?.invalid">
+          {{ titulo?.errors?.['required'] ? 'Campo obligatorio' : 'Mínimo 3 caracteres' }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="descripcion" rows="4" required></textarea>
+        <mat-error *ngIf="descripcion?.invalid">
+          {{ descripcion?.errors?.['required'] ? 'Campo obligatorio' : 'Mínimo 10 caracteres' }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-slide-toggle formControlName="estado" class="toggle-field">
+        {{ causaForm.value.estado ? 'Activo' : 'Inactivo' }}
+      </mat-slide-toggle>
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="actions-container">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="guardar()"
+            [disabled]="causaForm.invalid">
+      {{ modoCreacion ? 'Crear' : 'Guardar' }}
+    </button>
+  </div>
+</div>

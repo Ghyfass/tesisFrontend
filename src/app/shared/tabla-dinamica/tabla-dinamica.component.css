@@ -1,0 +1,4 @@
+/* Solo para que el texto de descripción haga wrap */
+.text-wrap {
+  white-space: normal !important;
+}

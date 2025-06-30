@@ -1,0 +1,20 @@
+<div class="container-fluid px-0">
+  <div class="ps-3 pe-2">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="mb-0">Gestión de Temáticas</h2>
+
+      <mat-form-field appearance="outline" class="w-50">
+        <mat-label>Buscar</mat-label>
+        <input matInput placeholder="Filtrar por nombre, descripción o usuario..." [(ngModel)]="filtro">
+      </mat-form-field>
+    </div>
+
+    <app-tabla-dinamica
+      [displayedColumns]="displayedColumns"
+      [dataSource]="dataFiltrada"
+      (editar)="editar($event)"
+      (toggleEstado)="toggleEstado($event)"
+      (eliminar)="eliminar($event)">
+    </app-tabla-dinamica>
+  </div>
+</div>
